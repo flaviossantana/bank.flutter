@@ -13,7 +13,7 @@ class FlutterBank extends StatelessWidget {
         primaryColor: Colors.blueGrey,
       ),
       home: Scaffold(
-        body: TransferenciaForm(),
+        body: Transferencias(),
       ),
       debugShowCheckedModeBanner: false,
     );
@@ -44,20 +44,23 @@ class TransferenciaForm extends StatelessWidget {
               icone: Icons.monetization_on),
           RaisedButton(
             child: Text('Incluir'),
-            onPressed: () => _criarTransferencia(),
+            onPressed: () => _criarTransferencia(context),
           ),
         ],
       ),
     );
   }
 
-  void _criarTransferencia() {
+  void _criarTransferencia(BuildContext context) {
     final int conta = int.tryParse(_numeroContaTEC.text);
     final double valor = double.tryParse(_valorTEC.text);
 
     if (isTransferenciaValida(conta, valor)) {
       final novaTransferencia = Transferencia(valor, conta);
       debugPrint('$novaTransferencia');
+
+      Navigator.pop(context, novaTransferencia);
+
     }
   }
 
@@ -111,7 +114,14 @@ class Transferencias extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          //Vou adicionar algo aqui depois
+          final Future<Transferencia> future =
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return TransferenciaForm();
+          }));
+
+          future.then((transferencia) {
+            debugPrint('$transferencia');
+          });
         },
         child: Icon(
           Icons.add,
