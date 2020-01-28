@@ -21,6 +21,9 @@ class FlutterBank extends StatelessWidget {
 }
 
 class TransferenciaForm extends StatelessWidget {
+  final TextEditingController _numeroContaTEC = TextEditingController();
+  final TextEditingController _valorTEC = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,6 +35,7 @@ class TransferenciaForm extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: TextField(
+              controller: _numeroContaTEC,
               style: TextStyle(
                 fontSize: 24.0,
               ),
@@ -45,6 +49,7 @@ class TransferenciaForm extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: TextField(
+              controller: _valorTEC,
               style: TextStyle(
                 fontSize: 24.0,
               ),
@@ -58,6 +63,15 @@ class TransferenciaForm extends StatelessWidget {
           ),
           RaisedButton(
             child: Text('Incluir'),
+            onPressed: () {
+              final int conta = int.tryParse(_numeroContaTEC.text);
+              final double valor = double.tryParse(_valorTEC.text);
+
+              if (conta != null && valor != null) {
+                final novaTransferencia = Transferencia(valor, conta);
+                debugPrint('$novaTransferencia');
+              }
+            },
           ),
         ],
       ),
