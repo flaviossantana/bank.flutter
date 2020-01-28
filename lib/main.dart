@@ -67,7 +67,7 @@ class TransferenciaForm extends StatelessWidget {
               final int conta = int.tryParse(_numeroContaTEC.text);
               final double valor = double.tryParse(_valorTEC.text);
 
-              if (conta != null && valor != null) {
+              if (isTransferenciaValida(conta, valor)) {
                 final novaTransferencia = Transferencia(valor, conta);
                 debugPrint('$novaTransferencia');
               }
@@ -77,6 +77,9 @@ class TransferenciaForm extends StatelessWidget {
       ),
     );
   }
+
+  bool isTransferenciaValida(int conta, double valor) =>
+      conta != null && valor != null;
 }
 
 class Transferencias extends StatelessWidget {
