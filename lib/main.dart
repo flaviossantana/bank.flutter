@@ -40,7 +40,7 @@ class TransferenciaForm extends StatelessWidget {
           TextFieldBnk(
               controlador: _valorTEC,
               rotulo: 'Valor:',
-              dica: '0,00',
+              dica: '0.00',
               icone: Icons.monetization_on),
           RaisedButton(
             child: Text('Incluir'),
@@ -95,8 +95,18 @@ class TextFieldBnk extends StatelessWidget {
   }
 }
 
-class Transferencias extends StatelessWidget {
+class Transferencias extends StatefulWidget {
+
   final List<Transferencia> _transferencias = List();
+
+  @override
+  State<StatefulWidget> createState() {
+    return TransferenciasState();
+  }
+}
+
+class TransferenciasState extends State<Transferencias> {
+
 
   @override
   Widget build(BuildContext context) {
@@ -107,10 +117,9 @@ class Transferencias extends StatelessWidget {
         ),
       ),
       body: ListView.builder(
-        itemCount: _transferencias.length,
+        itemCount: widget._transferencias.length,
         itemBuilder: (context, index) {
-
-          final transferencias = _transferencias[index];
+          final transferencias = widget._transferencias[index];
 
           return ItemTransferencia(transferencias);
         },
@@ -123,7 +132,7 @@ class Transferencias extends StatelessWidget {
           }));
 
           future.then((transferencia) {
-            _transferencias.add(transferencia);
+            widget._transferencias.add(transferencia);
           });
         },
         child: Icon(
@@ -132,6 +141,7 @@ class Transferencias extends StatelessWidget {
         backgroundColor: Colors.blueGrey,
       ),
     );
+    ;
   }
 }
 
