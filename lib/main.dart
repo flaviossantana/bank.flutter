@@ -23,7 +23,12 @@ class FlutterBank extends StatelessWidget {
 class TransferenciaForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Nova Transferência'),
+      ),
+      body: Text('Texto'),
+    );
   }
 }
 
