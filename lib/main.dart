@@ -30,24 +30,26 @@ class TransferenciaForm extends StatelessWidget {
       appBar: AppBar(
         title: Text('Nova Transferência'),
       ),
-      body: Column(
-        children: <Widget>[
-          TextFieldBnk(
-            controlador: _numeroContaTEC,
-            rotulo: 'Número da Conta:',
-            dica: '0000',
-          ),
-          TextFieldBnk(
-              controlador: _valorTEC,
-              rotulo: 'Valor:',
-              dica: '0.00',
-              icone: Icons.monetization_on),
-          RaisedButton(
-            child: Text('Incluir'),
-            onPressed: () => _criarTransferencia(context),
-          ),
-        ],
-      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            TextFieldBnk(
+              controlador: _numeroContaTEC,
+              rotulo: 'Número da Conta:',
+              dica: '0000',
+            ),
+            TextFieldBnk(
+                controlador: _valorTEC,
+                rotulo: 'Valor:',
+                dica: '0.00',
+                icone: Icons.monetization_on),
+            RaisedButton(
+              child: Text('Incluir'),
+              onPressed: () => _criarTransferencia(context),
+            ),
+          ],
+        ),
+      )
     );
   }
 
@@ -57,8 +59,6 @@ class TransferenciaForm extends StatelessWidget {
 
     if (isTransferenciaValida(conta, valor)) {
       final novaTransferencia = Transferencia(valor, conta);
-      debugPrint('$novaTransferencia');
-
       Navigator.pop(context, novaTransferencia);
     }
   }
@@ -96,7 +96,6 @@ class TextFieldBnk extends StatelessWidget {
 }
 
 class Transferencias extends StatefulWidget {
-
   final List<Transferencia> _transferencias = List();
 
   @override
@@ -106,8 +105,6 @@ class Transferencias extends StatefulWidget {
 }
 
 class TransferenciasState extends State<Transferencias> {
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -132,7 +129,10 @@ class TransferenciasState extends State<Transferencias> {
           }));
 
           future.then((transferencia) {
-            widget._transferencias.add(transferencia);
+            if(transferencia != null){
+              widget._transferencias.add(transferencia);
+            }
+
           });
         },
         child: Icon(
