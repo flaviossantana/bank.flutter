@@ -9,12 +9,14 @@ class FlutterBank extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        brightness: Brightness.light,
-        primaryColor: Colors.blueGrey,
-      ),
-      home: Scaffold(
-        body: Transferencias(),
-      ),
+          brightness: Brightness.light,
+          primaryColor: Colors.purple[800],
+          accentColor: Colors.deepPurple[100],
+          buttonTheme: ButtonThemeData(
+            buttonColor: Colors.deepPurple[100],
+            textTheme: ButtonTextTheme.primary,
+          )),
+      home: Transferencias(),
       debugShowCheckedModeBanner: false,
     );
   }
