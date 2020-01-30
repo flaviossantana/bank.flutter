@@ -20,37 +20,43 @@ class FlutterBank extends StatelessWidget {
   }
 }
 
-class TransferenciaForm extends StatelessWidget {
+class TransferenciaForm extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return TransferenciaFormState();
+  }
+}
+
+class TransferenciaFormState extends State<TransferenciaForm> {
   final TextEditingController _numeroContaTEC = TextEditingController();
   final TextEditingController _valorTEC = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Nova Transferência'),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            TextFieldBnk(
-              controlador: _numeroContaTEC,
-              rotulo: 'Número da Conta:',
-              dica: '0000',
-            ),
-            TextFieldBnk(
-                controlador: _valorTEC,
-                rotulo: 'Valor:',
-                dica: '0.00',
-                icone: Icons.monetization_on),
-            RaisedButton(
-              child: Text('Incluir'),
-              onPressed: () => _criarTransferencia(context),
-            ),
-          ],
+        appBar: AppBar(
+          title: Text('Nova Transferência'),
         ),
-      )
-    );
+        body: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              TextFieldBnk(
+                controlador: _numeroContaTEC,
+                rotulo: 'Número da Conta:',
+                dica: '0000',
+              ),
+              TextFieldBnk(
+                  controlador: _valorTEC,
+                  rotulo: 'Valor:',
+                  dica: '0.00',
+                  icone: Icons.monetization_on),
+              RaisedButton(
+                child: Text('Incluir'),
+                onPressed: () => _criarTransferencia(context),
+              ),
+            ],
+          ),
+        ));
   }
 
   void _criarTransferencia(BuildContext context) {
@@ -129,10 +135,14 @@ class TransferenciasState extends State<Transferencias> {
           }));
 
           future.then((transferencia) {
-            if(transferencia != null){
-              widget._transferencias.add(transferencia);
-            }
-
+            Future.delayed(Duration(seconds: 2), () {
+              setState(() {
+                if (transferencia != null) {
+                  widget._transferencias.add(transferencia);
+                }
+                debugPrint('Atualiza!');
+              });
+            });
           });
         },
         child: Icon(
@@ -141,7 +151,6 @@ class TransferenciasState extends State<Transferencias> {
         backgroundColor: Colors.blueGrey,
       ),
     );
-    ;
   }
 }
 
