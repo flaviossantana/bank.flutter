@@ -9,11 +9,12 @@ class FlutterBank extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
+          fontFamily: 'RobotoMono',
           brightness: Brightness.light,
-          primaryColor: Colors.purple[800],
-          accentColor: Colors.deepPurple[100],
+          primaryColor: Colors.blue[700],
+          accentColor: Colors.yellow[500],
           buttonTheme: ButtonThemeData(
-            buttonColor: Colors.deepPurple[100],
+            buttonColor: Colors.yellow[500],
             textTheme: ButtonTextTheme.primary,
           )),
       home: Transferencias(),
@@ -150,7 +151,6 @@ class TransferenciasState extends State<Transferencias> {
         child: Icon(
           Icons.add,
         ),
-        backgroundColor: Colors.blueGrey,
       ),
     );
   }
