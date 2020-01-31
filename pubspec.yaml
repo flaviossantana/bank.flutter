@@ -19,3 +19,6 @@ dev_dependencies:
 flutter:
 
   uses-material-design: true
+  assets:
+    - assets/logo/bytebank_logo.png
+    - assets/icon/bolsa-de-dinheiro.png
