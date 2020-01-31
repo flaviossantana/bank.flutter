@@ -1,26 +1,33 @@
-import 'package:fluterbank/screens/transferencia/transferencias_list.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(
-      FlutterBank(),
+      ByteBankApp(),
     );
 
-class FlutterBank extends StatelessWidget {
+class ByteBankApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        fontFamily: 'RobotoMono',
-        brightness: Brightness.light,
-        primaryColor: Colors.blue[700],
-        accentColor: Colors.yellow[500],
-        buttonTheme: ButtonThemeData(
-          buttonColor: Colors.yellow[500],
-          textTheme: ButtonTextTheme.primary,
+      title: 'Título',
+      home: MyStatelessWidget(),
+      debugShowCheckedModeBanner: false,
+    );
+  }
+}
+
+class MyStatelessWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Dashboard'),
+      ),
+      body: Center(
+        child: Text(
+          'Minha Home Page',
+          style: TextStyle(fontSize: 24),
         ),
       ),
-      home: Transferencias(),
-      debugShowCheckedModeBanner: false,
     );
   }
 }
