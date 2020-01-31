@@ -1,3 +1,6 @@
+import 'package:fluterbank/components/container_bnk.dart';
+import 'package:fluterbank/resources/values/app_assests.dart';
+import 'package:fluterbank/resources/values/app_colors.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(
@@ -8,7 +11,9 @@ class ByteBankApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(primaryColor: Colors.green[800]),
+      theme: ThemeData(
+        primaryColor: AppColors.PRIMARY_COLOR,
+      ),
       title: 'Título',
       home: MyStatelessWidget(),
       debugShowCheckedModeBanner: false,
@@ -25,18 +30,9 @@ class MyStatelessWidget extends StatelessWidget {
         ),
         body: ListView(
           children: <Widget>[
-            Image.asset('assets/logo/bytebank_logo.png'),
-            Container(
-              height: 100,
-              width: 200,
-              color: Colors.green[900],
-              child: Column(
-                children: <Widget>[
-                  Icon(Icons.people),
-                  Text('Contatos'),
-                ],
-              ),
-            )
+            Image.asset(AppAssests.LOGO_BYTE_BNK),
+            ContainerDash('Contatos', Icons.people),
+            ContainerDash('transferências', Icons.credit_card),
           ],
         ));
   }
