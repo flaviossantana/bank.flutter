@@ -12,8 +12,14 @@ class Dashboard extends StatelessWidget {
       body: ListView(
         children: <Widget>[
           Image.asset(AppAssests.LOGO_BYTE_BNK),
-          ContainerDash('Contatos', Icons.people),
-          ContainerDash('transferências', Icons.credit_card),
+          ContainerDash(
+            'Contatos',
+            Icons.people,
+          ),
+          ContainerDash(
+            'transferências',
+            Icons.credit_card,
+          ),
         ],
       ),
     );
