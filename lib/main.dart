@@ -13,9 +13,9 @@ class ByteBankApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: AppColors.PRIMARY_COLOR,
       ),
+      debugShowCheckedModeBanner: false,
       title: 'Título',
       home: Dashboard(),
-      debugShowCheckedModeBanner: false,
     );
   }
 }

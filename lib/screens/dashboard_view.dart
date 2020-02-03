@@ -9,17 +9,29 @@ class Dashboard extends StatelessWidget {
       appBar: AppBar(
         title: Text('Dashboard'),
       ),
-      body: ListView(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Image.asset(AppAssests.LOGO_BYTE_BNK),
-          ContainerDash(
-            'Contatos',
-            Icons.people,
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Image.asset(AppAssests.LOGO_BYTE_BNK),
           ),
-          ContainerDash(
-            'transferências',
-            Icons.credit_card,
-          ),
+          Container(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                ContainerDash(
+                  'Contatos',
+                  Icons.people,
+                ),
+                ContainerDash(
+                  'transferências',
+                  Icons.credit_card,
+                ),
+              ],
+            ),
+          )
         ],
       ),
     );
