@@ -11,8 +11,12 @@ class ByteBankApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        primaryColor: AppColors.PRIMARY_COLOR,
-      ),
+          primaryColor: UIColors.PRIMARY_COLOR,
+          accentColor: UIColors.ACCENT_COLOR,
+          buttonTheme: ButtonThemeData(
+            buttonColor: UIColors.BUTTON_COLOR,
+            textTheme: ButtonTextTheme.primary,
+          )),
       debugShowCheckedModeBanner: false,
       title: 'Título',
       home: Dashboard(),

@@ -15,7 +15,7 @@ class Dashboard extends StatelessWidget {
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Image.asset(AppAssests.LOGO_BYTE_BNK),
+            child: Image.asset(UIAssest.LOGO_BYTE_BNK),
           ),
           Container(
             child: Row(
@@ -26,7 +26,7 @@ class Dashboard extends StatelessWidget {
                   Icons.people,
                 ),
                 ContainerDash(
-                  'transferências',
+                  'Transferências',
                   Icons.credit_card,
                 ),
               ],

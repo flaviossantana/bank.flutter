@@ -1,4 +1,4 @@
-class AppAssests {
+class UIAssest {
 
   static const String _ASSET_DIR = "assets";
 
