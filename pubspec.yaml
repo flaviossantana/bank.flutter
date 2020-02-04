@@ -10,6 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
 
+  sqflite: ^1.2.0
   cupertino_icons: ^0.1.2
 
 dev_dependencies:
