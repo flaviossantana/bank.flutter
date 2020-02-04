@@ -1,8 +1,13 @@
+import 'package:fluterbank/models/contato.dart';
 import 'package:fluterbank/resources/values/ui_text.dart';
 import 'package:fluterbank/widget/item_card_list_view.dart';
 import 'package:flutter/material.dart';
 
+import 'contatos_form.dart';
+
 class Contatos extends StatefulWidget {
+  final List<Contato> _contatos = List();
+
   @override
   State<StatefulWidget> createState() {
     return ContatosState();
@@ -18,18 +23,41 @@ class ContatosState extends State<Contatos> {
           UIText.CONTATOS,
         ),
       ),
-      body: ListView.builder(itemBuilder: (context, index) {
-        return ItemCardListView(
-          title: 'Alex',
-          subtitle: '1234',
-        );
-      }),
+      body: ListView.builder(
+          itemCount: widget._contatos.length,
+          itemBuilder: (context, index) {
+            final contato = widget._contatos[index];
+
+            return ItemCardListView(
+              title: contato.nome,
+              subtitle: contato.conta.toString(),
+            );
+          }),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) {
+                return ContatosForm();
+              },
+            ),
+          ).then(
+            (contato) => _atualizar(contato),
+          );
+        },
         child: Icon(
           Icons.add,
         ),
       ),
     );
+  }
+
+  void _atualizar(Contato contato) {
+    setState(() {
+      if (contato != null) {
+        widget._contatos.add(contato);
+      }
+    });
   }
 }

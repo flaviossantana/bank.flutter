@@ -1,20 +1,19 @@
 import 'package:fluterbank/components/text_field_bnk.dart';
+import 'package:fluterbank/models/contato.dart';
 import 'package:fluterbank/resources/values/ui_text.dart';
 import 'package:flutter/material.dart';
 
-class ContatosForm extends StatelessWidget {
+class ContatosForm extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
+  State<StatefulWidget> createState() {
     return ContatosFormState();
   }
 }
 
-class ContatosFormState extends StatefulWidget {
-  @override
-  _ContatosFormStateState createState() => _ContatosFormStateState();
-}
+class ContatosFormState extends State<ContatosForm> {
+  final TextEditingController _nomeTEC = TextEditingController();
+  final TextEditingController _contaTEC = TextEditingController();
 
-class _ContatosFormStateState extends State<ContatosFormState> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,10 +25,12 @@ class _ContatosFormStateState extends State<ContatosFormState> {
           TextFieldBnk(
             rotulo: UIText.NOME_COMPLETO,
             textInputType: TextInputType.text,
+            controlador: _nomeTEC,
           ),
           TextFieldBnk(
             rotulo: UIText.NUMERO_CONTA_ROTULO,
             textInputType: TextInputType.number,
+            controlador: _contaTEC,
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -38,7 +39,7 @@ class _ContatosFormStateState extends State<ContatosFormState> {
               child: RaisedButton(
                 elevation: 8.0,
                 child: Text(UIText.INCLUIR_TEXT),
-                onPressed: () => (context) {},
+                onPressed: () => _criarContato(context),
               ),
             ),
           ),
@@ -46,4 +47,20 @@ class _ContatosFormStateState extends State<ContatosFormState> {
       ),
     );
   }
+
+  void _criarContato(BuildContext context) {
+    final int conta = int.tryParse(_contaTEC.text);
+    final String nome = _nomeTEC.text;
+
+    _incluir(conta, nome, context);
+  }
+
+  void _incluir(int conta, String nome, BuildContext context) {
+    if (isContatoValido(conta, nome)) {
+      final novaTransferencia = Contato(nome, conta);
+      Navigator.pop(context, novaTransferencia);
+    }
+  }
+
+  bool isContatoValido(int conta, String nome) => conta != null && nome != null;
 }
