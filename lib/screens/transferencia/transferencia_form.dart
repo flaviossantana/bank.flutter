@@ -27,7 +27,7 @@ class TransferenciaFormState extends State<TransferenciaForm> {
                 controlador: _numeroContaTEC,
                 rotulo: UIText.NUMERO_CONTA_ROTULO,
                 dica: UIText.NUMERO_CONTA_DICA,
-                textInputType: TextInputType.text,
+                textInputType: TextInputType.number,
               ),
               TextFieldBnk(
                 controlador: _valorTEC,
