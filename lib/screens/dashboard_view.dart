@@ -1,13 +1,17 @@
 import 'package:fluterbank/components/container_bnk.dart';
-import 'package:fluterbank/resources/values/app_assests.dart';
+import 'package:fluterbank/resources/values/ui_assests.dart';
+import 'package:fluterbank/resources/values/ui_text.dart';
+import 'package:fluterbank/screens/transferencia/transferencias_list.dart';
 import 'package:flutter/material.dart';
+
+import 'contatos/contatos_list.dart';
 
 class Dashboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Dashboard'),
+        title: Text(UIText.DASHBOARD),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -22,12 +26,26 @@ class Dashboard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 ContainerDash(
-                  'Contatos',
+                  UIText.CONTATOS,
                   Icons.people,
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => Contatos(),
+                      ),
+                    );
+                  },
                 ),
                 ContainerDash(
-                  'Transferências',
+                  UIText.TRANSFERENCIAS,
                   Icons.credit_card,
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => Transferencias(),
+                      ),
+                    );
+                  },
                 ),
               ],
             ),

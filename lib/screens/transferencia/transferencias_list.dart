@@ -1,8 +1,8 @@
 import 'package:fluterbank/models/transferencia.dart';
+import 'package:fluterbank/resources/values/ui_text.dart';
 import 'package:fluterbank/screens/transferencia/transferencia_form.dart';
+import 'package:fluterbank/widget/item_card_list_view.dart';
 import 'package:flutter/material.dart';
-
-const _transferencia = 'Transferências';
 
 class Transferencias extends StatefulWidget {
   final List<Transferencia> _transferencias = List();
@@ -19,15 +19,19 @@ class TransferenciasState extends State<Transferencias> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          _transferencia,
+          UIText.TRANSFERENCIAS,
         ),
       ),
       body: ListView.builder(
         itemCount: widget._transferencias.length,
         itemBuilder: (context, index) {
-          final transferencias = widget._transferencias[index];
+          final transferencia = widget._transferencias[index];
 
-          return ItemTransferencia(transferencias);
+          return ItemCardListView(
+            leading: Icons.monetization_on,
+            title: transferencia.conta.toString(),
+            subtitle: transferencia.valor.toString(),
+          );
         },
       ),
       floatingActionButton: FloatingActionButton(
@@ -56,22 +60,5 @@ class TransferenciasState extends State<Transferencias> {
         widget._transferencias.add(transferencia);
       }
     });
-  }
-}
-
-class ItemTransferencia extends StatelessWidget {
-  final Transferencia _transferencia;
-
-  ItemTransferencia(this._transferencia);
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: ListTile(
-        leading: Icon(Icons.monetization_on),
-        title: Text(_transferencia.valor.toString()),
-        subtitle: Text(_transferencia.conta.toString()),
-      ),
-    );
   }
 }

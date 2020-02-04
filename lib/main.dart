@@ -1,4 +1,4 @@
-import 'package:fluterbank/resources/values/app_colors.dart';
+import 'package:fluterbank/resources/values/ui_colors.dart';
 import 'package:fluterbank/screens/dashboard_view.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +18,6 @@ class ByteBankApp extends StatelessWidget {
             textTheme: ButtonTextTheme.primary,
           )),
       debugShowCheckedModeBanner: false,
-      title: 'Título',
       home: Dashboard(),
     );
   }
