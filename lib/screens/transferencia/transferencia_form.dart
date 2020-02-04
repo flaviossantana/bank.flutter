@@ -1,13 +1,7 @@
 import 'package:fluterbank/components/text_field_bnk.dart';
 import 'package:fluterbank/models/transferencia.dart';
+import 'package:fluterbank/resources/values/ui_text.dart';
 import 'package:flutter/material.dart';
-
-var _novaTransferencia = 'Nova Transferência';
-var _numeroContaRotulo = 'Número da Conta:';
-var _numeroContaDica = '0000';
-var _valorRotulo = 'Valor:';
-var _valorDica = '0.00';
-var _incluirText = 'Incluir';
 
 class TransferenciaForm extends StatefulWidget {
   @override
@@ -22,26 +16,28 @@ class TransferenciaFormState extends State<TransferenciaForm> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
         appBar: AppBar(
-          title: Text(_novaTransferencia),
+          title: Text(UIText.NOVA_TRANSFERENCIA),
         ),
         body: SingleChildScrollView(
           child: Column(
             children: <Widget>[
               TextFieldBnk(
                 controlador: _numeroContaTEC,
-                rotulo: _numeroContaRotulo,
-                dica: _numeroContaDica,
+                rotulo: UIText.NUMERO_CONTA_ROTULO,
+                dica: UIText.NUMERO_CONTA_DICA,
+                textInputType: TextInputType.text,
               ),
               TextFieldBnk(
-                  controlador: _valorTEC,
-                  rotulo: _valorRotulo,
-                  dica: _valorDica,
-                  icone: Icons.monetization_on),
+                controlador: _valorTEC,
+                rotulo: UIText.VALOR_ROTULO,
+                dica: UIText.VALOR_DICA,
+                icone: Icons.monetization_on,
+                textInputType: TextInputType.number,
+              ),
               RaisedButton(
-                child: Text(_incluirText),
+                child: Text(UIText.INCLUIR_TEXT),
                 onPressed: () => _criarTransferencia(context),
               ),
             ],
@@ -58,7 +54,7 @@ class TransferenciaFormState extends State<TransferenciaForm> {
 
   void _incluir(int conta, double valor, BuildContext context) {
     if (isTransferenciaValida(conta, valor)) {
-      final novaTransferencia =  Transferencia(valor, conta);
+      final novaTransferencia = Transferencia(valor, conta);
       Navigator.pop(context, novaTransferencia);
     }
   }

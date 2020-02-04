@@ -5,12 +5,14 @@ class TextFieldBnk extends StatelessWidget {
   final String rotulo;
   final String dica;
   final IconData icone;
+  final TextInputType textInputType;
 
   TextFieldBnk({
     this.controlador,
     this.rotulo,
     this.dica,
     this.icone,
+    this.textInputType
   });
 
   @override
@@ -27,7 +29,7 @@ class TextFieldBnk extends StatelessWidget {
           labelText: rotulo,
           hintText: dica,
         ),
-        keyboardType: TextInputType.number,
+        keyboardType: textInputType != null ? textInputType : null,
       ),
     );
   }
