@@ -20,7 +20,7 @@ Future<Database> criarBancoDados() {
   });
 }
 
-Future<int> save(Contato contato) {
+Future<int> salvar(Contato contato) {
   return criarBancoDados().then((db) {
     return db.insert(TB_CONTATO, contato.toMap());
   });

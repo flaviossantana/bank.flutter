@@ -1,7 +1,7 @@
 import 'package:fluterbank/database/app_database.dart';
 
 class Contato {
-  final int id;
+  int id;
   final String nome;
   final int conta;
 

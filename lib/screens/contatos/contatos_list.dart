@@ -1,3 +1,4 @@
+import 'package:fluterbank/database/app_database.dart';
 import 'package:fluterbank/models/contato.dart';
 import 'package:fluterbank/resources/values/ui_text.dart';
 import 'package:fluterbank/widget/item_card_list_view.dart';
@@ -26,8 +27,7 @@ class ContatosState extends State<Contatos> {
       body: ListView.builder(
           itemCount: widget._contatos.length,
           itemBuilder: (context, index) {
-            final contato = widget._contatos[index];
-
+            final Contato contato = widget._contatos[index];
             return ItemCardListView(
               title: contato.nome,
               subtitle: contato.conta.toString(),
@@ -56,7 +56,11 @@ class ContatosState extends State<Contatos> {
   void _atualizar(Contato contato) {
     setState(() {
       if (contato != null) {
-        widget._contatos.add(contato);
+        salvar(contato).then((id){
+          contato.id = id;
+          widget._contatos.add(contato);
+        });
+
       }
     });
   }

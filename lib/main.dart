@@ -1,17 +1,9 @@
-import 'package:fluterbank/models/contato.dart';
 import 'package:fluterbank/resources/values/ui_colors.dart';
 import 'package:fluterbank/screens/dashboard_view.dart';
 import 'package:flutter/material.dart';
 
-import 'database/app_database.dart';
-
 void main() {
   runApp(ByteBankApp());
-  save(Contato('FLAVIO SANTANA', 2032)).then((id) {
-    todos().then((contatos) {
-      debugPrint(contatos.toString());
-    });
-  });
 }
 
 class ByteBankApp extends StatelessWidget {
