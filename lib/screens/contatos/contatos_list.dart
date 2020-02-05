@@ -15,7 +15,8 @@ class Contatos extends StatelessWidget {
           UIText.CONTATOS,
         ),
       ),
-      body: FutureBuilder(
+      body: FutureBuilder<List<Contato>>(
+        initialData: List(),
         future: todos(),
         builder: (context, snapshot) {
           final List<Contato> contatos = snapshot.data;
