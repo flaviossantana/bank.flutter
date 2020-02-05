@@ -1,5 +1,5 @@
 name: fluterbank
-description: A new Flutter project.
+description: Um novo banco em Flutter para você
 
 version: 1.0.0+1
 
@@ -9,7 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  path:
   sqflite: ^1.2.0
   cupertino_icons: ^0.1.2
 
@@ -18,7 +18,6 @@ dev_dependencies:
     sdk: flutter
 
 flutter:
-
   uses-material-design: true
   assets:
     - assets/logo/bytebank_logo.png
