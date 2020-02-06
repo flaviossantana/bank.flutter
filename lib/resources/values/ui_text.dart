@@ -2,6 +2,9 @@ class UIText {
 
   static const String DASHBOARD = 'Dashboard';
 
+  static const String CARREGANDO = 'Aguarde';
+  static const String OPS = 'Oppss...';
+
   //CONTATO FORM
   static const String CONTATOS = 'Contatos';
   static const String NOVO_CONTATO = 'Novo Contato';
