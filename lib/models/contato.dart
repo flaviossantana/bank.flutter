@@ -1,4 +1,4 @@
-import 'package:fluterbank/database/app_database.dart';
+import 'package:fluterbank/database/dao/contato_dao.dart';
 
 class Contato {
   int id;
@@ -8,13 +8,11 @@ class Contato {
   Contato(this.nome, this.conta, {this.id});
 
   Map<String, dynamic> toMap({int id}) {
-    final Map<String, dynamic> contatoMap = Map();
-    if (id != null) {
-      contatoMap[CL_ID] = id;
-    }
-    contatoMap[CL_NOME] = this.nome;
-    contatoMap[CL_CONTA] = this.conta;
-    return contatoMap;
+    return {
+      CL_ID: id,
+      CL_NOME: this.nome,
+      CL_CONTA: this.conta,
+    };
   }
 
   static Contato fromMap(Map<String, dynamic> map) {

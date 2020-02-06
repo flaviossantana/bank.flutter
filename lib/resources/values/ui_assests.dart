@@ -1,5 +1,4 @@
 class UIAssest {
-
   static const String _ASSET_DIR = "assets";
 
   //LOGOS
@@ -9,8 +8,4 @@ class UIAssest {
   //ICONS
   static const String _ICON_DIR = "$_ASSET_DIR/icon";
   static const String ICON_BOLSA_DINHEIRO = '$_ICON_DIR/bolsa-de-dinheiro.png';
-
-  //IMAGENS
-  static const String _IMAGENS_DIR = "$_ASSET_DIR/images";
-
 }

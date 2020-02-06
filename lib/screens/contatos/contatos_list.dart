@@ -1,4 +1,4 @@
-import 'package:fluterbank/database/app_database.dart';
+import 'package:fluterbank/database/dao/contato_dao.dart';
 import 'package:fluterbank/models/contato.dart';
 import 'package:fluterbank/resources/values/ui_text.dart';
 import 'package:fluterbank/widget/item_card_list_view.dart';
@@ -7,7 +7,28 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import 'contatos_form.dart';
 
-class Contatos extends StatelessWidget {
+class Contatos extends StatefulWidget {
+  final ContatoDao _contatoDao = ContatoDao();
+  Future<List<Contato>> _contatos;
+
+  @override
+  State<StatefulWidget> createState() {
+    return _ContatosState();
+  }
+}
+
+class _ContatosState extends State<Contatos> {
+
+  @override
+  void initState() {
+    super.initState();
+    widget._contatos = contatos();
+  }
+
+  Future<List<Contato>> contatos() async {
+    return await widget._contatoDao.todos();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,8 +39,8 @@ class Contatos extends StatelessWidget {
       ),
       body: FutureBuilder<List<Contato>>(
         initialData: List(),
-        future: todos(),
-        builder: (context, snapshot) {
+        future: widget._contatos,
+        builder: (BuildContext context, AsyncSnapshot<List<Contato>> snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.none:
               break;
@@ -34,6 +55,7 @@ class Contatos extends StatelessWidget {
             case ConnectionState.done:
               final List<Contato> contatos = snapshot.data;
               return ListView.builder(
+                itemCount: contatos.length,
                 itemBuilder: (context, index) {
                   final Contato contato = contatos[index];
                   return ItemCardListView(
@@ -41,7 +63,6 @@ class Contatos extends StatelessWidget {
                     subtitle: contato.conta.toString(),
                   );
                 },
-                itemCount: contatos.length,
               );
               break;
           }

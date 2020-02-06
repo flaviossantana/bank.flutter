@@ -1,5 +1,5 @@
 import 'package:fluterbank/components/text_field_bnk.dart';
-import 'package:fluterbank/database/app_database.dart';
+import 'package:fluterbank/database/dao/contato_dao.dart';
 import 'package:fluterbank/models/contato.dart';
 import 'package:fluterbank/resources/values/ui_text.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +14,8 @@ class ContatosForm extends StatefulWidget {
 class ContatosFormState extends State<ContatosForm> {
   final TextEditingController _nomeTEC = TextEditingController();
   final TextEditingController _contaTEC = TextEditingController();
+
+  final ContatoDao _contatoDao = ContatoDao();
 
   @override
   Widget build(BuildContext context) {
@@ -59,8 +61,8 @@ class ContatosFormState extends State<ContatosForm> {
   void _incluir(int conta, String nome, BuildContext context) {
     if (isContatoValido(conta, nome)) {
       final novoContato = Contato(nome, conta);
-      salvar(novoContato).then((id) {
-        todos().then((contatos) {
+      _contatoDao.salvar(novoContato).then((id) {
+        _contatoDao.todos().then((contatos) {
           Navigator.pop(context);
         });
       });
