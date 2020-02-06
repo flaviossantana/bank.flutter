@@ -11,12 +11,17 @@ const String CL_CONTA = 'conta';
 Future<Database> criarBancoDados() {
   return getDatabasesPath().then((dbPath) {
     final String path = join(dbPath, 'bankflutter.db');
-    return openDatabase(path, onCreate: (db, version) {
-      db.execute('CREATE TABLE $TB_CONTATO( '
-          '$CL_ID INTEGER PRIMARY KEY, '
-          '$CL_NOME TEXT, '
-          '$CL_CONTA INTEGER )');
-    }, version: DB_VERSION);
+    return openDatabase(
+      path,
+      onCreate: (db, version) {
+        db.execute('CREATE TABLE $TB_CONTATO( '
+            '$CL_ID INTEGER PRIMARY KEY, '
+            '$CL_NOME TEXT, '
+            '$CL_CONTA INTEGER )');
+      },
+      version: DB_VERSION,
+      onDowngrade: onDatabaseDowngradeDelete,
+    );
   });
 }
 

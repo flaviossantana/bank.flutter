@@ -18,7 +18,7 @@ class Contatos extends StatelessWidget {
       ),
       body: FutureBuilder<List<Contato>>(
         initialData: List(),
-        future: Future.delayed(Duration(seconds: 2)).then((valor) => todos()),
+        future: todos(),
         builder: (context, snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.none:
@@ -50,15 +50,12 @@ class Contatos extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.push(
-            context,
+          Navigator.of(context).push(
             MaterialPageRoute(
               builder: (context) {
                 return ContatosForm();
               },
             ),
-          ).then(
-            (contato) => _atualizar(contato),
           );
         },
         child: Icon(
@@ -66,13 +63,5 @@ class Contatos extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  void _atualizar(Contato contato) {
-//    setState(){
-    if (contato != null) {
-      salvar(contato);
-    }
-//    }
   }
 }

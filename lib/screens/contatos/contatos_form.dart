@@ -1,4 +1,5 @@
 import 'package:fluterbank/components/text_field_bnk.dart';
+import 'package:fluterbank/database/app_database.dart';
 import 'package:fluterbank/models/contato.dart';
 import 'package:fluterbank/resources/values/ui_text.dart';
 import 'package:flutter/material.dart';
@@ -20,21 +21,21 @@ class ContatosFormState extends State<ContatosForm> {
       appBar: AppBar(
         title: Text(UIText.NOVO_CONTATO),
       ),
-      body: Column(
-        children: <Widget>[
-          TextFieldBnk(
-            rotulo: UIText.NOME_COMPLETO,
-            textInputType: TextInputType.text,
-            controlador: _nomeTEC,
-          ),
-          TextFieldBnk(
-            rotulo: UIText.NUMERO_CONTA_ROTULO,
-            textInputType: TextInputType.number,
-            controlador: _contaTEC,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: SizedBox(
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: <Widget>[
+            TextFieldBnk(
+              rotulo: UIText.NOME_COMPLETO,
+              textInputType: TextInputType.text,
+              controlador: _nomeTEC,
+            ),
+            TextFieldBnk(
+              rotulo: UIText.NUMERO_CONTA_ROTULO,
+              textInputType: TextInputType.number,
+              controlador: _contaTEC,
+            ),
+            SizedBox(
               width: double.maxFinite,
               child: RaisedButton(
                 elevation: 8.0,
@@ -42,8 +43,8 @@ class ContatosFormState extends State<ContatosForm> {
                 onPressed: () => _criarContato(context),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -57,8 +58,10 @@ class ContatosFormState extends State<ContatosForm> {
 
   void _incluir(int conta, String nome, BuildContext context) {
     if (isContatoValido(conta, nome)) {
-      final novaTransferencia = Contato(nome, conta);
-      Navigator.pop(context, novaTransferencia);
+      final novoContato = Contato(nome, conta);
+      salvar(novoContato).then((id){
+        Navigator.pop(context);
+      });
     }
   }
 
