@@ -8,37 +8,31 @@ const String CL_ID = 'id';
 const String CL_NOME = 'nome';
 const String CL_CONTA = 'conta';
 
-Future<Database> criarBancoDados() {
-  return getDatabasesPath().then((dbPath) {
-    final String path = join(dbPath, 'bankflutter.db');
-    return openDatabase(
-      path,
-      onCreate: (db, version) {
-        db.execute('CREATE TABLE $TB_CONTATO( '
-            '$CL_ID INTEGER PRIMARY KEY, '
-            '$CL_NOME TEXT, '
-            '$CL_CONTA INTEGER )');
-      },
-      version: DB_VERSION,
-      onDowngrade: onDatabaseDowngradeDelete,
-    );
-  });
+Future<Database> criarBancoDados() async {
+  final String path = join(await getDatabasesPath(), 'bankflutter.db');
+  return openDatabase(
+    path,
+    onCreate: (db, version) {
+      db.execute('CREATE TABLE $TB_CONTATO( '
+          '$CL_ID INTEGER PRIMARY KEY, '
+          '$CL_NOME TEXT, '
+          '$CL_CONTA INTEGER )');
+    },
+    version: DB_VERSION,
+    onDowngrade: onDatabaseDowngradeDelete,
+  );
 }
 
-Future<int> salvar(Contato contato) {
-  return criarBancoDados().then((db) {
-    return db.insert(TB_CONTATO, contato.toMap());
-  });
+Future<int> salvar(Contato contato) async {
+  return (await criarBancoDados()).insert(TB_CONTATO, contato.toMap());
 }
 
-Future<List<Contato>> todos() {
-  return criarBancoDados().then((db) {
-    return db.query(TB_CONTATO).then((maps) {
-      final List<Contato> contatos = List();
-      for (Map<String, dynamic> map in maps) {
-        contatos.add(Contato.fromMap(map));
-      }
-      return contatos;
-    });
-  });
+Future<List<Contato>> todos() async {
+  final Database db = await criarBancoDados();
+  final List<Map<String, dynamic>> maps = await db.query(TB_CONTATO);
+  final List<Contato> contatos = List();
+  for (Map<String, dynamic> map in maps) {
+    contatos.add(Contato.fromMap(map));
+  }
+  return contatos;
 }

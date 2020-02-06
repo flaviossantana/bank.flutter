@@ -59,8 +59,10 @@ class ContatosFormState extends State<ContatosForm> {
   void _incluir(int conta, String nome, BuildContext context) {
     if (isContatoValido(conta, nome)) {
       final novoContato = Contato(nome, conta);
-      salvar(novoContato).then((id){
-        Navigator.pop(context);
+      salvar(novoContato).then((id) {
+        todos().then((contatos) {
+          Navigator.pop(context);
+        });
       });
     }
   }
