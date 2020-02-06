@@ -1,7 +1,7 @@
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
-const int DB_VERSION = 1;
+const int DB_VERSION = 2;
 
 Future<Database> criarBancoDados(String tableSql) async {
   final String path = join(await getDatabasesPath(), 'bankflutter.db');
