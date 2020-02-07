@@ -2,16 +2,16 @@ import 'package:fluterbank/database/dao/contato_dao.dart';
 
 class Contato {
   int id;
-  final String nome;
-  final int conta;
+  final String name;
+  final int accountNumber;
 
-  Contato(this.nome, this.conta, {this.id});
+  Contato(this.name, this.accountNumber, {this.id});
 
   Map<String, dynamic> toMap({int id}) {
     return {
       CL_ID: id,
-      CL_NOME: this.nome,
-      CL_CONTA: this.conta,
+      CL_NOME: this.name,
+      CL_CONTA: this.accountNumber,
     };
   }
 
@@ -25,6 +25,6 @@ class Contato {
 
   @override
   String toString() {
-    return 'Contato{id: $id, nome: $nome, conta: $conta}';
+    return 'Contato{id: $id, nome: $name, conta: $accountNumber}';
   }
 }

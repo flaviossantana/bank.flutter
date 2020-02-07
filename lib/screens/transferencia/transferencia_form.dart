@@ -54,7 +54,7 @@ class TransferenciaFormState extends State<TransferenciaForm> {
 
   void _incluir(int conta, double valor, BuildContext context) {
     if (isTransferenciaValida(conta, valor)) {
-      final novoContato = Transferencia(valor, conta);
+      final novoContato = Transferencia(value: valor);
       Navigator.pop(context, novoContato);
     }
   }

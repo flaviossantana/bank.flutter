@@ -64,8 +64,8 @@ class _ContatosState extends State<Contatos> {
                 itemBuilder: (context, index) {
                   final Contato contato = contatos[index];
                   return ItemCardListView(
-                    title: contato.nome,
-                    subtitle: contato.conta.toString(),
+                    title: contato.name,
+                    subtitle: contato.accountNumber.toString(),
                   );
                 },
               );

@@ -29,8 +29,8 @@ class TransferenciasState extends State<Transferencias> {
 
           return ItemCardListView(
             leading: Icons.monetization_on,
-            title: transferencia.conta.toString(),
-            subtitle: transferencia.valor.toString(),
+            title: transferencia.value.toString(),
+            subtitle: 'Subtítulo',
           );
         },
       ),

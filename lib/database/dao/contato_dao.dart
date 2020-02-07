@@ -3,8 +3,8 @@ import 'package:fluterbank/models/contato.dart';
 import 'package:sqflite/sqflite.dart';
 
 const String CL_ID = 'id';
-const String CL_NOME = 'nome';
-const String CL_CONTA = 'conta';
+const String CL_NOME = 'name';
+const String CL_CONTA = 'accountNumber';
 
 class ContatoDao {
   static const String TB_CONTATO = 'contato';
