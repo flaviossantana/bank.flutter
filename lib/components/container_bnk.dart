@@ -18,7 +18,7 @@ class ContainerDash extends StatelessWidget {
           child: Container(
             padding: EdgeInsets.all(8.0),
             height: 100,
-            width: 150,
+            width: 140,
             color: Theme.of(context).primaryColor,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
