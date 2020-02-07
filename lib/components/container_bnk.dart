@@ -5,7 +5,11 @@ class ContainerDash extends StatelessWidget {
   final IconData icone;
   final void Function() onTap;
 
-  ContainerDash(this.titulo, this.icone, {@required this.onTap});
+  ContainerDash(
+    this.titulo,
+    this.icone, {
+    @required this.onTap,
+  }) : assert(onTap != null);
 
   @override
   Widget build(BuildContext context) {
