@@ -22,27 +22,24 @@ class Dashboard extends StatelessWidget {
             child: Image.asset(UIAssest.LOGO_BYTE_BNK),
           ),
           Container(
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  ContainerDash(
-                    UIText.CONTATOS,
-                    Icons.people,
-                    onTap: () {
-                      _navigationPush(context, Contatos());
-                    },
-                  ),
-                  ContainerDash(
-                    UIText.TRANSFERENCIAS,
-                    Icons.credit_card,
-                    onTap: () {
-                      _navigationPush(context, Transferencias());
-                    },
-                  ),
-                ],
-              ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                ContainerDash(
+                  UIText.CONTATOS,
+                  Icons.people,
+                  onTap: () {
+                    _navigationPush(context, Contatos());
+                  },
+                ),
+                ContainerDash(
+                  UIText.TRANSFERENCIAS,
+                  Icons.credit_card,
+                  onTap: () {
+                    _navigationPush(context, Transferencias());
+                  },
+                ),
+              ],
             ),
           )
         ],
