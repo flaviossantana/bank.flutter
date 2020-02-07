@@ -7,7 +7,9 @@ const String _PATH = 'http://192.168.56.1:8080';
 
 class TransacaoService {
   void todas() async {
-    final Client client =HttpClientWithInterceptor.build(interceptors: [LoggingInterceptor()]);
+    final Client client = HttpClientWithInterceptor.build(
+      interceptors: [LoggingInterceptor()],
+    );
     await client.get('$_PATH/transactions');
   }
 }
