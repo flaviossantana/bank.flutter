@@ -5,7 +5,7 @@ class ContainerDash extends StatelessWidget {
   final IconData icone;
   final void Function() onTap;
 
-  ContainerDash(this.titulo, this.icone, {this.onTap});
+  ContainerDash(this.titulo, this.icone, {@required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class ContainerDash extends StatelessWidget {
       child: Material(
         color: Theme.of(context).primaryColor,
         child: InkWell(
-          onTap: onTap,
+          onTap: (() => onTap()),
           child: Container(
             padding: EdgeInsets.all(8.0),
             height: 100,

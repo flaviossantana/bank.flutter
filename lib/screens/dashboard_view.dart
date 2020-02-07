@@ -22,35 +22,38 @@ class Dashboard extends StatelessWidget {
             child: Image.asset(UIAssest.LOGO_BYTE_BNK),
           ),
           Container(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                ContainerDash(
-                  UIText.CONTATOS,
-                  Icons.people,
-                  onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => Contatos(),
-                      ),
-                    );
-                  },
-                ),
-                ContainerDash(
-                  UIText.TRANSFERENCIAS,
-                  Icons.credit_card,
-                  onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => Transferencias(),
-                      ),
-                    );
-                  },
-                ),
-              ],
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  ContainerDash(
+                    UIText.CONTATOS,
+                    Icons.people,
+                    onTap: () {
+                      _navigationPush(context, Contatos());
+                    },
+                  ),
+                  ContainerDash(
+                    UIText.TRANSFERENCIAS,
+                    Icons.credit_card,
+                    onTap: () {
+                      _navigationPush(context, Transferencias());
+                    },
+                  ),
+                ],
+              ),
             ),
           )
         ],
+      ),
+    );
+  }
+
+  void _navigationPush(BuildContext context, view) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => view,
       ),
     );
   }

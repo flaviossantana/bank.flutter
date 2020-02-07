@@ -18,7 +18,9 @@ class ByteBankApp extends StatelessWidget {
             textTheme: ButtonTextTheme.primary,
           )),
       debugShowCheckedModeBanner: false,
-      home: Dashboard(),
+      home: SafeArea(
+        child: Dashboard(),
+      ),
     );
   }
 }

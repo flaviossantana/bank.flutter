@@ -18,7 +18,6 @@ class Contatos extends StatefulWidget {
 }
 
 class _ContatosState extends State<Contatos> {
-
   @override
   void initState() {
     super.initState();
@@ -36,6 +35,12 @@ class _ContatosState extends State<Contatos> {
         title: Text(
           UIText.CONTATOS,
         ),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.refresh),
+            onPressed: () => debugPrint('OI'),
+          )
+        ],
       ),
       body: FutureBuilder<List<Contato>>(
         initialData: List(),
