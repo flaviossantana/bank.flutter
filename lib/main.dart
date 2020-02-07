@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 
 void main() {
   runApp(ByteBankApp());
-  TransacaoService().salvar();
   TransacaoService().todas();
 }
 
