@@ -1,11 +1,9 @@
 import 'package:fluterbank/resources/values/ui_colors.dart';
 import 'package:fluterbank/screens/dashboard_view.dart';
-import 'package:fluterbank/services/transacao_service.dart';
 import 'package:flutter/material.dart';
 
 void main() {
   runApp(ByteBankApp());
-  TransacaoService().todas();
 }
 
 class ByteBankApp extends StatelessWidget {
@@ -13,6 +11,7 @@ class ByteBankApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
+          primarySwatch: Colors.green,
           primaryColor: UIColors.PRIMARY_COLOR,
           accentColor: UIColors.ACCENT_COLOR,
           buttonTheme: ButtonThemeData(

@@ -9,7 +9,6 @@ import 'contatos_form.dart';
 
 class Contatos extends StatefulWidget {
   final ContatoDao _contatoDao = ContatoDao();
-  Future<List<Contato>> _contatos;
 
   @override
   State<StatefulWidget> createState() {
@@ -18,15 +17,6 @@ class Contatos extends StatefulWidget {
 }
 
 class _ContatosState extends State<Contatos> {
-  @override
-  void initState() {
-    super.initState();
-    widget._contatos = contatos();
-  }
-
-  Future<List<Contato>> contatos() async {
-    return await widget._contatoDao.todos();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,8 +34,9 @@ class _ContatosState extends State<Contatos> {
       ),
       body: FutureBuilder<List<Contato>>(
         initialData: List(),
-        future: widget._contatos,
+        future: widget._contatoDao.todos(),
         builder: (BuildContext context, AsyncSnapshot<List<Contato>> snapshot) {
+
           switch (snapshot.connectionState) {
             case ConnectionState.none:
               break;
@@ -59,6 +50,7 @@ class _ContatosState extends State<Contatos> {
               break;
             case ConnectionState.done:
               final List<Contato> contatos = snapshot.data;
+
               return ListView.builder(
                 itemCount: contatos.length,
                 itemBuilder: (context, index) {
@@ -69,6 +61,7 @@ class _ContatosState extends State<Contatos> {
                   );
                 },
               );
+
               break;
           }
           return Text(UIText.OPS);
