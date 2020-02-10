@@ -1,4 +1,4 @@
-import 'package:fluterbank/components/text_field_bnk.dart';
+import 'package:fluterbank/widget/text_field_bnk.dart';
 import 'package:fluterbank/models/transferencia.dart';
 import 'package:fluterbank/resources/values/ui_text.dart';
 import 'package:flutter/material.dart';

@@ -1,5 +1,5 @@
 import 'package:fluterbank/resources/values/ui_colors.dart';
-import 'package:fluterbank/screens/dashboard_view.dart';
+import 'package:fluterbank/screens/home/dashboard_view.dart';
 import 'package:flutter/material.dart';
 
 void main() {

@@ -1,10 +1,9 @@
-import 'package:fluterbank/components/container_bnk.dart';
 import 'package:fluterbank/resources/values/ui_assests.dart';
 import 'package:fluterbank/resources/values/ui_text.dart';
+import 'package:fluterbank/screens/contatos/contatos_list.dart';
 import 'package:fluterbank/screens/transferencia/transferencias_list.dart';
+import 'package:fluterbank/screens/home/container_bnk.dart';
 import 'package:flutter/material.dart';
-
-import 'contatos/contatos_list.dart';
 
 class Dashboard extends StatelessWidget {
   @override

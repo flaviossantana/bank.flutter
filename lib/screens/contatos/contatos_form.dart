@@ -1,4 +1,4 @@
-import 'package:fluterbank/components/text_field_bnk.dart';
+import 'package:fluterbank/widget/text_field_bnk.dart';
 import 'package:fluterbank/database/dao/contato_dao.dart';
 import 'package:fluterbank/models/contato.dart';
 import 'package:fluterbank/resources/values/ui_text.dart';
