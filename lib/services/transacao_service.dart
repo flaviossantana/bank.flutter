@@ -17,7 +17,8 @@ class TransacaoService {
   }
 
   Future<List<Transferencia>> todas() async {
-    final Response response = await _client.get('$_PATH/transactions');
+    final Response response =
+        await _client.get('$_PATH/transactions').timeout(Duration(seconds: 5));
 
     final List<dynamic> decodeJson = jsonDecode(response.body);
 

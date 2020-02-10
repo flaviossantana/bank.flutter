@@ -2,7 +2,9 @@ import 'package:fluterbank/models/transferencia.dart';
 import 'package:fluterbank/resources/values/ui_text.dart';
 import 'package:fluterbank/screens/transferencia/transferencia_form.dart';
 import 'package:fluterbank/services/transacao_service.dart';
+import 'package:fluterbank/widget/centered_message.dart';
 import 'package:fluterbank/widget/item_card_list_view.dart';
+import 'package:fluterbank/widget/loading_bnk.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
@@ -27,40 +29,50 @@ class TransferenciasState extends State<Transferencias> {
         body: FutureBuilder<List<Transferencia>>(
           initialData: List(),
           future: TransacaoService().todas(),
-          builder: (context, asyncSnapshot) {
-            switch (asyncSnapshot.connectionState) {
+          builder: (context, snapshot) {
+            switch (snapshot.connectionState) {
               case ConnectionState.none:
                 break;
               case ConnectionState.waiting:
-                return SpinKitWave(
-                  color: Theme.of(context).accentColor,
-                  size: 50.0,
-                );
+                return Loading.wave(context);
                 break;
               case ConnectionState.active:
                 break;
               case ConnectionState.done:
 
-                List<Transferencia> transferecias = asyncSnapshot.data;
+                if (snapshot.hasData) {
+                  List<Transferencia> transferecias = snapshot.data;
 
-                return ListView.builder(
-                  itemCount: transferecias.length,
-                  itemBuilder: (context, index) {
+                  if (transferecias.isNotEmpty) {
+                    return ListView.builder(
 
-                    final transferencia = transferecias[index];
+                      itemCount: transferecias.length,
+                      itemBuilder: (context, index) {
+                        final transferencia = transferecias[index];
 
-                    return ItemCardListView(
-                      leading: Icons.monetization_on,
-                      title: transferencia.contato.name,
-                      subtitle: transferencia.contato.accountNumber.toString(),
+                        return ItemCardListView(
+                          leading: Icons.monetization_on,
+                          title: transferencia.contato.name,
+                          subtitle:
+                              transferencia.contato.accountNumber.toString(),
+                        );
+                      },
                     );
-                  },
+                  }
+                }
+
+                return CenteredMessage(
+                  UIText.TRANSACAO_NAO_ENCONTRADA,
+                  icon: Icons.warning,
                 );
 
                 break;
             }
 
-            return Text(UIText.OPS);
+            return CenteredMessage(
+              UIText.OPS,
+              icon: Icons.sentiment_dissatisfied,
+            );
           },
         ),
         floatingActionButton: FloatingActionButton(

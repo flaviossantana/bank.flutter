@@ -18,6 +18,7 @@ class UIText {
   static const String VALOR_ROTULO = 'Valor:';
   static const String VALOR_DICA = '0.00';
   static const String INCLUIR_TEXT = 'Incluir';
+  static const String TRANSACAO_NAO_ENCONTRADA = 'Transação não encontrada';
 
 
 }
