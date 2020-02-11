@@ -6,7 +6,6 @@ import 'package:fluterbank/widget/centered_message.dart';
 import 'package:fluterbank/widget/item_card_list_view.dart';
 import 'package:fluterbank/widget/loading_bnk.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class Transferencias extends StatefulWidget {
   final List<Transferencia> _transferencias = List();
@@ -52,9 +51,9 @@ class TransferenciasState extends State<Transferencias> {
 
                         return ItemCardListView(
                           leading: Icons.monetization_on,
-                          title: transferencia.contato.name,
+                          title: transferencia.contact.name,
                           subtitle:
-                              transferencia.contato.accountNumber.toString(),
+                              transferencia.contact.accountNumber.toString(),
                         );
                       },
                     );

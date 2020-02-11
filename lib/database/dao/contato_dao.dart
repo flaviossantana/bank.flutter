@@ -16,7 +16,7 @@ class ContatoDao {
 
   Future<int> salvar(Contato contato) async {
     return (await criarBancoDados(tbContatoSql))
-        .insert(TB_CONTATO, contato.toMap());
+        .insert(TB_CONTATO, contato.toJson());
   }
 
   Future<List<Contato>> todos() async {
@@ -24,7 +24,7 @@ class ContatoDao {
     final List<Map<String, dynamic>> maps = await db.query(TB_CONTATO);
     final List<Contato> contatos = List();
     for (Map<String, dynamic> map in maps) {
-      contatos.add(Contato.fromMap(map));
+      contatos.add(Contato.fromJson(map));
     }
     return contatos;
   }

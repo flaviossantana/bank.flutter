@@ -1,30 +1,20 @@
-import 'package:fluterbank/database/dao/contato_dao.dart';
+
 
 class Contato {
-  int id;
-  final String name;
-  final int accountNumber;
+  String name;
+  int accountNumber;
 
-  Contato(this.name, this.accountNumber, {this.id});
+  Contato({this.name, this.accountNumber});
 
-  Map<String, dynamic> toMap({int id}) {
-    return {
-      CL_ID: id,
-      CL_NOME: this.name,
-      CL_CONTA: this.accountNumber,
-    };
+  Contato.fromJson(Map<String, dynamic> json) {
+    name = json['name'];
+    accountNumber = json['accountNumber'];
   }
 
-  static Contato fromMap(Map<String, dynamic> map) {
-    return Contato(
-      map[CL_NOME],
-      map[CL_CONTA],
-      id: map[CL_ID],
-    );
-  }
-
-  @override
-  String toString() {
-    return 'Contato{id: $id, nome: $name, conta: $accountNumber}';
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['name'] = this.name;
+    data['accountNumber'] = this.accountNumber;
+    return data;
   }
 }
