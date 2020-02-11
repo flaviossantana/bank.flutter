@@ -1,7 +1,9 @@
 import 'package:fluterbank/database/dao/contato_dao.dart';
 import 'package:fluterbank/models/contato.dart';
 import 'package:fluterbank/resources/values/ui_text.dart';
+import 'package:fluterbank/screens/transferencia/transferencia_contato_form.dart';
 import 'package:fluterbank/widget/item_card_list_view.dart';
+import 'package:fluterbank/widget/loading_bnk.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
@@ -17,7 +19,6 @@ class Contatos extends StatefulWidget {
 }
 
 class _ContatosState extends State<Contatos> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,15 +37,11 @@ class _ContatosState extends State<Contatos> {
         initialData: List(),
         future: widget._contatoDao.todos(),
         builder: (BuildContext context, AsyncSnapshot<List<Contato>> snapshot) {
-
           switch (snapshot.connectionState) {
             case ConnectionState.none:
               break;
             case ConnectionState.waiting:
-              return SpinKitWave(
-                color: Theme.of(context).accentColor,
-                size: 50.0,
-              );
+              return Loading.wave(context);
               break;
             case ConnectionState.active:
               break;
@@ -58,6 +55,14 @@ class _ContatosState extends State<Contatos> {
                   return ItemCardListView(
                     title: contato.name,
                     subtitle: contato.accountNumber.toString(),
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              TransferenciaContatoForm(contato),
+                        ),
+                      );
+                    },
                   );
                 },
               );
