@@ -41,13 +41,8 @@ class TransacaoService {
           'Content-Type': 'application/json',
           'password': '1000',
         },
-        body: _paraTransacao(transferencia));
+        body: jsonEncode(transferencia.toJson()));
     return Transferencia.fromJson(jsonDecode(response.body));
   }
 
-  String _paraTransacao(Transferencia transferencia) {
-    final Map<String, dynamic> transacaoMap = transferencia.toJson();
-    final String transacaoJson = jsonEncode(transacaoMap);
-    return transacaoJson;
-  }
 }
