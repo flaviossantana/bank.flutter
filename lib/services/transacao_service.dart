@@ -26,13 +26,9 @@ class TransacaoService {
 
   List<Transferencia> _paraTransacoes(Response response) {
     final List<dynamic> decodeJson = jsonDecode(response.body);
-    final List<Transferencia> transferencia = List();
-    for (Map<String, dynamic> transferenciaMap in decodeJson) {
-      transferencia.add(
-        Transferencia.fromJson(transferenciaMap),
-      );
-    }
-    return transferencia;
+    return decodeJson.map((dynamic json){
+      return Transferencia.fromJson(json);
+    }).toList();
   }
 
   Future<Transferencia> salvar(Transferencia transferencia) async {
