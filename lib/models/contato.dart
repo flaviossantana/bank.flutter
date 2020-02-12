@@ -1,4 +1,6 @@
 
+const String _NAME = 'name';
+const String _ACCOUNT_NUMBER = 'accountNumber';
 
 class Contato {
   String name;
@@ -7,14 +9,14 @@ class Contato {
   Contato({this.name, this.accountNumber});
 
   Contato.fromJson(Map<String, dynamic> json) {
-    name = json['name'];
-    accountNumber = json['accountNumber'];
+    name = json[_NAME];
+    accountNumber = json[_ACCOUNT_NUMBER];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
-    data['accountNumber'] = this.accountNumber;
+    data[_NAME] = this.name;
+    data[_ACCOUNT_NUMBER] = this.accountNumber;
     return data;
   }
 }

@@ -1,29 +1,38 @@
 import 'package:fluterbank/models/contato.dart';
 
+const String _ID = 'id';
+const String _VALUE = 'value';
+const String _CONTACT = 'contact';
+const String _DATE_TIME = 'dateTime';
+
 class Transferencia {
   String id;
   double value;
   Contato contact;
   String dateTime;
 
-  Transferencia({this.id, this.value, this.contact, this.dateTime});
+  Transferencia({
+    this.id,
+    this.value,
+    this.contact,
+    this.dateTime,
+  });
 
   Transferencia.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    value = json['value'];
-    contact =
-        json['contact'] != null ? Contato.fromJson(json['contact']) : null;
-    dateTime = json['dateTime'];
+    id = json[_ID];
+    value = json[_VALUE];
+    dateTime = json[_DATE_TIME];
+    contact = json[_CONTACT] != null ? Contato.fromJson(json[_CONTACT]) : null;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['value'] = this.value;
+    data[_ID] = this.id;
+    data[_VALUE] = this.value;
+    data[_DATE_TIME] = this.dateTime;
     if (this.contact != null) {
-      data['contact'] = this.contact.toJson();
+      data[_CONTACT] = this.contact.toJson();
     }
-    data['dateTime'] = this.dateTime;
     return data;
   }
 
